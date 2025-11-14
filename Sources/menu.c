@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "Headers/menu.h"
 
 void mostra_menu(char str_menu[]){
     printf("%s", str_menu);
@@ -11,7 +12,7 @@ int obter_opcao(int n_opcoes){
   do{
     scanf("%d", &opcao);
     if(opcao<=0 || opcao>n_opcoes){
-        printf("\nescolha invalida, por favor escolha um numero presente no menu\n");
+        printf("\nEscolha invalida, por favor escolha um numero presente no menu\n");
     check = 1;
     }else
         check=0;
