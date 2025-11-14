@@ -3,44 +3,45 @@
 #include <string.h>
 #include <time.h>
 #include "funcoesMatriz.h"
+#include "menu.h"
 
-void main()
+int main()
 {
-    int mat[2][2], matAdj[2][2], matInv[2][2];
-    gerarMat(mat);
-    int det = calcDet(mat);
-    calcMatAdj(mat, matAdj);
-    calcMatInv(matAdj, matInv, det);
+    int mat[2][2],opcao,det;
+    float matInv[2][2],matAdj[2][2];
+    char str_menu[] =    "Digite a opcao desejada\n"
+                         "1. Criar uma matriz de criptografia.\n"
+                         "2. digitar um texto para ser criptografado.\n"
+                         "3. Criptografar Texto.\n"
+                         "4. Descriptografar Texto.\n"
+                         "5. Sair.\n";
 
-    printf("Matriz Original:\n");
-    for (int i = 0; i < 2; i++)
-    {
-        for (int j = 0; j < 2; j++)
-        {
-            printf("%d ", mat[i][j]);
-        }
-        printf("\n");
-    }
 
-    printf("Determinante: %d\n", det);
+    do{
+        mostra_menu(str_menu);
+        opcao = obter_opcao(5);
+        switch(opcao){
+            case 1:
+                gerarMat(mat);
+                det = calcDet(mat);
+                calcMatAdj(mat, matAdj);
+                calcMatInv(matAdj, matInv, det);    
+            break;
+            case 2:
 
-    printf("Matriz Adjacente:\n");
-    for (int i = 0; i < 2; i++)
-    {
-        for (int j = 0; j < 2; j++)
-        {
-            printf("%d ", matAdj[i][j]);
-        }
-        printf("\n");
-    }
+            break;
+            case 3:
+
+            break;
+            case 4:
+
+            break;
+            case 5:
+                printf("fim do programa\n");
+            break;
+        }  
     
-    printf("Matriz Inversa:\n");
-    for (int i = 0; i < 2; i++)
-    {
-        for (int j = 0; j < 2; j++)
-        {
-            printf("%d ", matInv[i][j]);
-        }
-        printf("\n");
-    }
+    }while(opcao !=5);
+    
+return 0;
 }
