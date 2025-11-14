@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
-#include "funcoesMatriz.h"
+#include "Headers/funcoesMatriz.h"
 
 void gerarMat(int mat[MAX][MAX])
 {

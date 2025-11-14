@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
-#include "funcoesMatriz.h"
-#include "menu.h"
+#include "Headers/funcoesMatriz.h"
+#include "Headers/menu.h"
 
 int main()
 {
@@ -11,7 +11,7 @@ int main()
     float matInv[2][2],matAdj[2][2];
     char str_menu[] =    "Digite a opcao desejada\n"
                          "1. Criar uma matriz de criptografia.\n"
-                         "2. digitar um texto para ser criptografado.\n"
+                         "2. Digitar um texto para ser criptografado.\n"
                          "3. Criptografar Texto.\n"
                          "4. Descriptografar Texto.\n"
                          "5. Sair.\n";
