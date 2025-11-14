@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
-#include "Headers/funcoesMatriz.h"
-#include "Headers/menu.h"
+#include "../Headers/funcoesMatriz.h"
+#include "../Headers/menu.h"
 
 int main()
 {

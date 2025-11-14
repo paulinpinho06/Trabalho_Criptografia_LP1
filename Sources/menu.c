@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "Headers/menu.h"
+#include "../Headers/menu.h"
 
 void mostra_menu(char str_menu[]){
     printf("%s", str_menu);
