@@ -5,7 +5,7 @@
 
 void gerarMat(int mat[MAX][MAX]);
 int calcDet(int mat[MAX][MAX]);
-void calcMatAdj(int mat[MAX][MAX], float matAdj[MAX][MAX]);
-void calcMatInv(float matAdj[MAX][MAX], float matInv[MAX][MAX], int det);
+void calcMatAdj(int mat[MAX][MAX], int matAdj[MAX][MAX]);
+void calcMatInv(int matAdj[MAX][MAX], int matInv[MAX][MAX], int det);
 
 #endif // FUNCOESMATRIZ_H
