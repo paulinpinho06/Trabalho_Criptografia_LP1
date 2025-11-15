@@ -4,7 +4,7 @@
 #include <time.h>
 #include "../Headers/funcoesMatriz.h"
 
-void gerarMat(int mat[MAX][MAX])
+void gerarMat(float mat[MAX][MAX])
 {
     int det = 0;
     srand(time(NULL));
@@ -28,13 +28,13 @@ void gerarMat(int mat[MAX][MAX])
     {
         for (int j = 0; j < 2; j++)
         {
-            printf("%d ", mat[i][j]);
+            printf("%.0f ", mat[i][j]);
         }
         printf("\n");
     }
 }
 
-int calcDet(int mat[MAX][MAX])
+int calcDet(float mat[MAX][MAX])
 {
     int det;
     det = (mat[0][0] * mat[1][1]) - (mat[0][1] * mat[1][0]);
@@ -42,7 +42,7 @@ int calcDet(int mat[MAX][MAX])
 return det;
 }
 
-void calcMatAdj(int mat[MAX][MAX], float matAdj[MAX][MAX])
+void calcMatAdj(float mat[MAX][MAX], float matAdj[MAX][MAX])
 {
     matAdj[0][0] = mat[1][1];
     matAdj[0][1] = -mat[0][1];
