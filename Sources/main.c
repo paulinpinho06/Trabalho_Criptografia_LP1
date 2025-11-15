@@ -4,11 +4,19 @@
 #include <time.h>
 #include "../Headers/funcoesMatriz.h"
 #include "../Headers/menu.h"
+#include max_texto
 
 int main()
-{
+{  
+    int mat_criada = 0;
+    int texto_pronto = 0;
+    int texto_cifrado = 0; 
+   
+    char texto_original[max_texto] = ""; // Texto de entrada
+    char texto_crip[max_texto] = ""; // Texto de saída
+    
     int mat[2][2],opcao,det;
-    float matInv[2][2],matAdj[2][2];
+    int matInv[2][2],matAdj[2][2];
     char str_menu[] =    "Digite a opcao desejada\n"
                          "1. Criar uma matriz de criptografia.\n"
                          "2. Digitar um texto para ser criptografado.\n"
@@ -16,39 +24,53 @@ int main()
                          "4. Descriptografar Texto.\n"
                          "5. Sair.\n";
 
-    int matrizPronta = 0;
-    int textoCriptografado = 0;
+
     do{
         mostra_menu(str_menu);
         opcao = obter_opcao(5);
         switch(opcao){
             case 1:
+                printf("\n--- 1. Criar Matriz de Criptografia ---\n");
                 gerarMat(mat);
                 det = calcDet(mat);
                 calcMatAdj(mat, matAdj);
                 calcMatInv(matAdj, matInv, det);    
-                matrizPronta = 1;
-                textoCriptografado = 0;
+                mat_criada = 1;
+                texto_cifrado = 0;
+                 printf("Matriz de criptografia e inversa criadas com sucesso!\n");
             break;
-            case 2:
-
+            case 2: 
+                 printf("\n--- 2. Criar Texto Original ---\n");
+                printf("Digite o texto (max %d caracteres): ", max_texto - 1);
+               ler_e_pre_processar_texto(texto_original, max_texto);
+                if (strlen(texto_original) > 0){
+                   
+                    texto_pronto = 1;
+                    texto_cifrado = 0; // Invalida criptografia anterior
+                    printf("Texto original definido (pré-processado): %s\n", texto_original);
+                    printf("Tamanho do texto: %zu\n", strlen(texto_original));
+                } else {
+                    texto_pronto = 0;
+                    printf("Texto não definido ou inválido.\n");
+                }
+                
             break;
             case 3:
-                if (matrizPronta == 0){
+                if (mat_criada == 0){
                     printf("Voce precisa criar uma matriz de criptografia primeiro!\n");
                     break; // Volta ao menu
                 
                 } else {
                     //chamar funcao de criptografar (FALTA FAZER)
-                    textoCriptografado = 1; // Sinaliza que o texto foi criptografado
+                    texto_cifrado = 1; // Sinaliza que o texto foi criptografado
                 }
             break;
             case 4:
-                if (matrizPronta == 0){
+                if (mat_criada == 0){
                     printf("Voce precisa criar uma matriz de criptografia primeiro!\n");
                     break; // Volta ao menu
                 }
-                else if(textoCriptografado == 0){
+                else if(texto_cifrado == 0){
                     printf("Voce precisa criptografar um texto primeiro!\n");
                     break; // Volta ao menu
                 }
