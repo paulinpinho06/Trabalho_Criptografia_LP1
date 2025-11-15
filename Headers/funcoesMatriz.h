@@ -1,6 +1,6 @@
 #ifndef FUNCOESMATRIZ_H
 #define FUNCOESMATRIZ_H
-#define max_texto 100000
+#define MAX_TEXTO 100000
 #define MAX 2
 
 void gerarMat(int mat[MAX][MAX]);
