@@ -4,7 +4,7 @@
 #include <time.h>
 #include "../Headers/funcoesMatriz.h"
 #include "../Headers/menu.h"
-#include max_texto
+#include MAX_TEXTO
 
 int main()
 {  
@@ -12,8 +12,8 @@ int main()
     int texto_pronto = 0;
     int texto_cifrado = 0; 
    
-    char texto_original[max_texto] = ""; // Texto de entrada
-    char texto_crip[max_texto] = ""; // Texto de saída
+    char texto_original[MAX_TEXTO] = ""; // Texto de entrada
+    char texto_crip[MAX_TEXTO] = ""; // Texto de saída
     
     int mat[2][2],opcao,det;
     int matInv[2][2],matAdj[2][2];
@@ -41,8 +41,8 @@ int main()
             break;
             case 2: 
                  printf("\n--- 2. Criar Texto Original ---\n");
-                printf("Digite o texto (max %d caracteres): ", max_texto - 1);
-               ler_e_pre_processar_texto(texto_original, max_texto);
+                printf("Digite o texto (max %d caracteres): ", MAX_TEXTO - 1);
+               ler_e_pre_processar_texto(texto_original, MAX_TEXTO);
                 if (strlen(texto_original) > 0){
                    
                     texto_pronto = 1;
