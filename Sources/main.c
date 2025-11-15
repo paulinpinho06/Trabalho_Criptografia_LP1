@@ -4,7 +4,7 @@
 #include <time.h>
 #include "../Headers/funcoesMatriz.h"
 #include "../Headers/menu.h"
-
+#include max_texto
 int main()
 {   
     int mat_criada = 0;
