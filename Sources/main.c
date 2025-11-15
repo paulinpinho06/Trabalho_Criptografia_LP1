@@ -32,7 +32,7 @@ int main()
                 det = calcDet(mat);
                 calcMatAdj(mat, matAdj);
                 calcMatInv(matAdj, matInv, det);
-                MATRIZ_CRIADA = 1;
+                mat_criada = 1;
                 printf("Matriz de criptografia e inversa criadas com sucesso!\n");
             break;
             case 2:
