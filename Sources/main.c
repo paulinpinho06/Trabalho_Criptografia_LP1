@@ -27,8 +27,8 @@ int main()
                 det = calcDet(mat);
                 calcMatAdj(mat, matAdj);
                 calcMatInv(matAdj, matInv, det);    
-                int matrizPronta = 1;
-                int textoCriptografado = 0;
+                matrizPronta = 1;
+                textoCriptografado = 0;
             break;
             case 2:
 
@@ -46,6 +46,10 @@ int main()
             case 4:
                 if (matrizPronta == 0){
                     printf("Voce precisa criar uma matriz de criptografia primeiro!\n");
+                    break; // Volta ao menu
+                }
+                else if(textoCriptografado == 0){
+                    printf("Voce precisa criptografar um texto primeiro!\n");
                     break; // Volta ao menu
                 }
                 else {
