@@ -4,7 +4,6 @@
 #include <time.h>
 #include "../Headers/funcoesMatriz.h"
 #include "../Headers/menu.h"
-#include MAX_TEXTO
 
 int main()
 {  
@@ -16,7 +15,7 @@ int main()
     char texto_crip[MAX_TEXTO] = ""; // Texto de saída
     
     int mat[2][2],opcao,det;
-    int matInv[2][2],matAdj[2][2];
+    float matInv[2][2],matAdj[2][2];
     char str_menu[] =    "Digite a opcao desejada\n"
                          "1. Criar uma matriz de criptografia.\n"
                          "2. Digitar um texto para ser criptografado.\n"
@@ -59,8 +58,13 @@ int main()
                 if (mat_criada == 0){
                     printf("Voce precisa criar uma matriz de criptografia primeiro!\n");
                     break; // Volta ao menu
-                
-                } else {
+                } 
+                else if(texto_pronto == 0){
+                    printf("Voce precisa digitar um texto para ser criptografado primeiro!\n");
+                    break; // Volta ao menu 
+
+                }
+                else {
                     //chamar funcao de criptografar (FALTA FAZER)
                     texto_cifrado = 1; // Sinaliza que o texto foi criptografado
                 }
@@ -79,7 +83,7 @@ int main()
                 }
             break;
             case 5:
-                printf("fim do programa\n");
+                printf("Fim do programa\n");
             break;
         }  
     
