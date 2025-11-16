@@ -94,7 +94,7 @@ void ler_e_pre_processar_texto(char* texto_buffer, int tamanho_max) {
     }
 
     texto_buffer[strcspn(texto_buffer, "\n")] = '\0'; // Remove a nova linha lida pelo fgets
-    
+
     for (int i = 0, j = 0; texto_buffer[i] != '\0'; i++){
 
         char c = texto_buffer[i];
@@ -107,5 +107,61 @@ void ler_e_pre_processar_texto(char* texto_buffer, int tamanho_max) {
         else {
             texto_buffer[i] = '#'; // Substitui caracteres não alfabéticos por '#'
         }
+    }
+}
+
+int textoParaMatriz(char* texto, int mat_M[])
+{
+    int tamanho_texto = strlen(texto);
+    int i; // Contador para o texto
+    int j = 0; // Contador para a matriz M
+
+    // Loop para converter cada caractere
+    for (i = 0; i < tamanho_texto; i++)
+    {
+        char c = texto[i];
+        
+        if (c == '#') {
+            mat_M[j] = 29; 
+        } else {
+           
+            mat_M[j] = (c - 'A') + 1;
+        }
+        j++; // Avança para a próxima posição da matriz M
+    }
+
+    // Verifica o "Padding" 
+    // Se o tamanho do texto (j) for ímpar, precisamos adicionar um '#' no final
+    if (j % 2 != 0)
+    {
+        mat_M[j] = 29; // Adiciona o '#'
+        j++;          
+    }
+
+    //Retorna o número de colunas da matriz M
+    return j / 2;
+}
+
+void multiplicarMatrizes(int mat_A[MAX][MAX], int mat_M[], int mat_N[], int col_M)
+{
+    int i_vetor_M = 0; // Índice para percorrer o vetor M (anda de 2 em 2)
+
+    // O loop 'c' itera por cada COLUNA da matriz M
+    for (int c = 0; c < col_M; c++)
+    {
+        // Pega os dois números da coluna atual de M
+        int m1 = mat_M[i_vetor_M];     // Linha 0
+        int m2 = mat_M[i_vetor_M + 1]; // Linha 1
+
+        // Agora, faz a multiplicação da Matriz A por esta coluna [m1, m2] 
+        int n1 = (mat_A[0][0] * m1) + (mat_A[0][1] * m2);
+        int n2 = (mat_A[1][0] * m1) + (mat_A[1][1] * m2);
+
+        // Salva o resultado na matriz N
+        mat_N[i_vetor_M] = n1;
+        mat_N[i_vetor_M + 1] = n2;
+
+        // Avança o índice do vetor por 2 (pois processamos 1 coluna = 2 elementos)
+        i_vetor_M += 2;
     }
 }

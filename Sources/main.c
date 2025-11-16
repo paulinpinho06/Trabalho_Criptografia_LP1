@@ -12,7 +12,9 @@ int main()
     int texto_cifrado = 0; 
    
     char texto_original[MAX_TEXTO] = ""; // Texto de entrada
-    char texto_crip[MAX_TEXTO] = ""; // Texto de saída
+    int mat_M_numerica[MAX_TEXTO];      // Guarda os números do texto (ex: 16, 12, 1, 14...)
+    int mat_N_criptografada[MAX_TEXTO]; // Guarda os números criptografados (ex: 61, 65, 4, 45...)
+    int num_colunas_M = 0;              // Guarda o número de colunas da matriz M
     
     int mat[2][2],opcao,det;
     float matInv[2][2],matAdj[2][2];
@@ -65,7 +67,27 @@ int main()
 
                 }
                 else {
-                    //chamar funcao de criptografar (FALTA FAZER)
+                    printf("\n--- 3. Criptografando Texto ---\n");
+                    
+                    // Converte o texto (string) para a matriz M (números)
+                    // Também adiciona o '#' (padding) se necessário.
+                    num_colunas_M = textoParaMatriz(texto_original, mat_M_numerica);
+
+                    // Multiplica A * M = N
+                    multiplicarMatrizes(mat, mat_M_numerica, mat_N_criptografada, num_colunas_M);
+
+                    // Mostra os resultados
+                    printf("Texto Original: %s\n", texto_original);
+                    
+                    printf("Texto Criptografado (Matriz N): ");
+                    int tamanho_N = num_colunas_M * 2; // O vetor N tem o dobro de colunas
+                    for(int i = 0; i < tamanho_N; i++) {
+                        printf("%d", mat_N_criptografada[i]);
+                        if (i < tamanho_N - 1) {
+                            printf(", "); // Adiciona vírgulas
+                        }
+                    }
+                    printf("\n\n");
                     texto_cifrado = 1; // Sinaliza que o texto foi criptografado
                 }
             break;
