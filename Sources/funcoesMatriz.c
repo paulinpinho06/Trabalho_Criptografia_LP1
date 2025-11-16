@@ -3,6 +3,7 @@
 #include <string.h>
 #include <time.h>
 #include <ctype.h>
+#include <math.h>
 #include "../Headers/funcoesMatriz.h"
 
 void gerarMat(int mat[MAX][MAX])
@@ -164,4 +165,50 @@ void multiplicarMatrizes(int mat_A[MAX][MAX], int mat_M[], int mat_N[], int col_
         // Avança o índice do vetor por 2 (pois processamos 1 coluna = 2 elementos)
         i_vetor_M += 2;
     }
+}
+
+void multiplicarMatrizInversa(float mat_Inv[MAX][MAX], int mat_N[], float mat_M_temp[], int col_N)
+{
+    int i_vetor = 0; // Índice para percorrer os vetores (anda de 2 em 2)
+
+    // O loop 'c' itera por cada COLUNA da matriz N
+    for (int c = 0; c < col_N; c++)
+    {
+        // Pega os dois números da coluna atual de N
+        int n1 = mat_N[i_vetor];
+        int n2 = mat_N[i_vetor + 1];
+
+        // Faz a multiplicação da Matriz Inversa por esta coluna [n1, n2]
+        // O resultado é float, pois mat_Inv é float
+        float m1_float = (mat_Inv[0][0] * n1) + (mat_Inv[0][1] * n2);
+        float m2_float = (mat_Inv[1][0] * n1) + (mat_Inv[1][1] * n2);
+
+        // Salva o resultado na matriz M temporária
+        // (Não podemos salvar como int ainda, pois perdemos precisão)
+        mat_M_temp[i_vetor] = m1_float;
+        mat_M_temp[i_vetor + 1] = m2_float;
+
+        // Avança o índice do vetor por 2
+        i_vetor += 2;
+    }
+}
+
+void matrizParaTexto(int mat_M[], char* texto, int tamanho_M)
+{
+    int i;
+    for (i = 0; i < tamanho_M; i++)
+    {
+        int num = mat_M[i];
+        
+        if (num == 29) {
+            texto[i] = '#'; // 29 é #
+        } else {
+            // Converte 1 para 'A', 2 para 'B', etc.
+            // (num - 1) dá a posição (0-25)
+            // Somamos 'A' para ter o caractere ASCII
+            texto[i] = (num - 1) + 'A';
+        }
+    }
+    // Adiciona o caractere nulo no final para fechar a string
+    texto[i] = '\0';
 }

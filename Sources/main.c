@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#include <math.h>
 #include "../Headers/funcoesMatriz.h"
 #include "../Headers/menu.h"
 
@@ -101,7 +102,35 @@ int main()
                     break; // Volta ao menu
                 }
                 else {
-                    //chamar funcao de descriptografar (FALTA FAZER)
+                    printf("\n--- 4. Descriptografando Texto ---\n");
+                    int tamanho_N = num_colunas_M * 2;
+                    
+                    // Cria buffers para a descriptografia
+                    float mat_M_temporaria[tamanho_N];
+                    int mat_M_decodificada[tamanho_N];
+                    char texto_decodificado[tamanho_N + 1]; // +1 para o '\0'
+
+                    // Multiplica A^-1 * N = M (com floats)
+                    multiplicarMatrizInversa(matInv, mat_N_criptografada, mat_M_temporaria, num_colunas_M);
+
+                    // Arredonda os floats para inteiros
+                    // Isso corrige pequenos erros de precisão (ex: 15.999 vira 16)
+                    for (int i = 0; i < tamanho_N; i++) {
+                        mat_M_decodificada[i] = round(mat_M_temporaria[i]);
+                    }
+
+                    // Converte a matriz de números M de volta para texto
+                    matrizParaTexto(mat_M_decodificada, texto_decodificado, tamanho_N);
+
+                    // Mostra os resultados
+                    printf("Texto Criptografado (Matriz N): ");
+                    for(int i = 0; i < tamanho_N; i++) {
+                        printf("%d", mat_N_criptografada[i]);
+                        if (i < tamanho_N - 1) printf(", ");
+                    }
+                    printf("\n");
+
+                    printf("Texto Descriptografado: %s\n\n", texto_decodificado);
                 }
             break;
             case 5:
